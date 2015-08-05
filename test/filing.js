@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-var Filing = require('../lib/filing');
+var Filing = require('../');
 
 var filingId = '266598';
 /*
