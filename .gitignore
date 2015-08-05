@@ -2,3 +2,4 @@ node_modules
 test/filings
 test/temp
 test/parsed
+doc/eFilingFormats
