@@ -11,5 +11,10 @@
   "scripts": {
     "test": "mocha"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "fast-csv": "^0.6.0",
+    "lodash": "^3.10.1",
+    "lru-cache": "^2.6.5"
+  }
 }
