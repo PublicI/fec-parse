@@ -13,13 +13,10 @@
   },
   "private": true,
   "dependencies": {
-    "fast-csv": "^0.6.0",
     "generate-function": "^2.0.0",
     "generate-object-property": "^1.2.0",
     "inherits": "^2.0.1",
     "lodash": "^3.10.1",
-    "lru-cache": "^2.6.5",
-    "stream": "0.0.2",
-    "through2": "^2.0.0"
+    "stream": "0.0.2"
   }
 }
