@@ -4,7 +4,8 @@ var fs = require('fs'),
 var parser = require('../');
 
 // var filingId = '266598';
-var filingId = '1015585'; // Hillary for America July 2015 report
+// var filingId = '1015585'; // Hillary for America July 2015 report
+var filingId = '840327'; // Obama for America 2012 post-general
 /*
 fs.readFile(function (err,contents) {
     var fromFech = JSON.parse(contents);
@@ -26,7 +27,7 @@ fs.createReadStream(__dirname + '/temp/' + filingId + '.fec')
             JSON.stringify(row);
             count++;
         }
-        console.log(row);
+        // console.log(row);
     })
     .on('end',function () {
         console.log('parsed ' + count + ' rows');
