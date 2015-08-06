@@ -26,22 +26,26 @@ class Parse
       rows = []
 
       if filing.readable?
-        file = File.open(@parsed_dir + '/' + id + '.json', 'a')
+#        file = File.open(@parsed_dir + '/' + id + '.json', 'a')
 
         first = true
 
-        file.write "{\r\n  \"rows\": [  \r\n    "
+        count = 0
+
+#        file.write "{\r\n  \"rows\": [  \r\n    "
         filing.each_row do |row|
           begin
             parsed_row = filing.parse_row?(row)
             if parsed_row
+              parsed_row.to_json
 
-              if !first
-                file.write ",\r\n    "
-              end
-              first = false
+#              if !first
+#                file.write ",\r\n    "
+#              end
+#              first = false
+              count += 1
 
-              file.write JSON.pretty_generate(parsed_row).gsub('  "','      "').gsub('}','    }')
+#              file.write JSON.pretty_generate(parsed_row).gsub('  "','      "').gsub('}','    }')
               # file.write parsed_row.to_json
             end
           rescue Fech::VersionError => e
@@ -49,9 +53,11 @@ class Parse
           end
         end
 
-        file.write "\r\n  ]\r\n}"
+        puts 'parsed ' + count.to_s + ' rows'
 
-        file.close()
+#        file.write "\r\n  ]\r\n}"
+
+#        file.close()
       end
     else
       puts 'skipping ' + id + ' because parsed file exists'
@@ -61,8 +67,8 @@ class Parse
   def iterate
     Dir.foreach(@temp_dir) do |file|
       if file.include?('.fec') && !file.include?('fech_')
-        parse(file)
         puts 'parsing ' + file
+        parse(file)
       end
     end
   end
