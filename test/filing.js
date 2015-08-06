@@ -1,7 +1,7 @@
 var fs = require('fs'),
     _ = require('lodash');
 
-var parser = require('../lib/parser');
+var parser = require('../');
 
 // var filingId = '266598';
 var filingId = '1015585'; // Hillary for America July 2015 report
@@ -26,6 +26,7 @@ fs.createReadStream(__dirname + '/temp/' + filingId + '.fec')
             JSON.stringify(row);
             count++;
         }
+        console.log(row);
     })
     .on('end',function () {
         console.log('parsed ' + count + ' rows');
