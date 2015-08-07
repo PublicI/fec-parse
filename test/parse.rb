@@ -8,7 +8,7 @@ class Parse
 
   def initialize
     @temp_dir = File.join('.','temp')
-    @parsed_dir = File.join('.','parsed')
+    @parsed_dir = File.join('.','ruby_parsed')
     Dir.mkdir(@parsed_dir) unless Dir.exist?(@parsed_dir)
   end
 
@@ -26,26 +26,26 @@ class Parse
       rows = []
 
       if filing.readable?
-#        file = File.open(@parsed_dir + '/' + id + '.json', 'a')
+        file = File.open(@parsed_dir + '/' + id + '.json', 'a')
 
         first = true
 
         count = 0
 
-#        file.write "{\r\n  \"rows\": [  \r\n    "
+        file.write "{\r\n  \"rows\": [  \r\n    "
         filing.each_row do |row|
           begin
             parsed_row = filing.parse_row?(row)
             if parsed_row
-              parsed_row.to_json
 
-#              if !first
-#                file.write ",\r\n    "
-#              end
-#              first = false
+              if count != 0
+                file.write ",\r\n    "
+              end
               count += 1
 
-#              file.write JSON.pretty_generate(parsed_row).gsub('  "','      "').gsub('}','    }')
+              file.write JSON.pretty_generate(parsed_row,{
+                  indent: '      '
+                }).gsub('}','    }')
               # file.write parsed_row.to_json
             end
           rescue Fech::VersionError => e
@@ -55,9 +55,9 @@ class Parse
 
         puts 'parsed ' + count.to_s + ' rows'
 
-#        file.write "\r\n  ]\r\n}"
+        file.write "\r\n  ]\r\n}\r\n"
 
-#        file.close()
+        file.close()
       end
     else
       puts 'skipping ' + id + ' because parsed file exists'

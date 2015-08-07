@@ -1,5 +1,6 @@
 node_modules
 test/filings
 test/temp
-test/parsed
+test/node_parsed
+test/ruby_parsed
 doc/eFilingFormats
