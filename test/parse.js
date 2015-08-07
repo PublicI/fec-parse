@@ -12,33 +12,53 @@ fs.readdir(__dirname + '/temp',function (err,files) {
             return;
         }
 
-        q.defer(function (filename) {
+        q.defer(function (filename,cb) {
             filingId = filename.replace('.fec','');
-            console.log('parsing ' + filingId + '.fec');
 
-            var count = 0;
+            fs.exists(__dirname + '/node_parsed/' + filingId + '.json',function (exists) {
+                if (!exists) {
+//                    console.log('parsing ' + filingId + '.fec');
 
-            var file = fs.createWriteStream(__dirname + '/node_parsed/' + filingId + '.json');
-            console.log(__dirname + '/node_parsed/' + filingId + '.json');
+                    var count = 0;
 
-            file.write('{\r\n  \"rows\": [  \r\n    ');
+                    var file = null;
 
-            fs.createReadStream(__dirname + '/temp/' + filingId + '.fec')
-                .pipe(parser())
-                .on('data', function(row) {
-                    if (row) {
-                        if (count !== 0) {
-                            file.write(',\r\n    ');
-                        }
-                        file.write(JSON.stringify(row,null,'      ').replace('}','    }'));
-                        count++;
-                    }
-                })
-                .on('finish',function () {
-                    file.write('\r\n  ]\r\n}\r\n');
-                    file.end();
-                    console.log('parsed ' + count + ' rows');
-                });
+                    fs.createReadStream(__dirname + '/temp/' + filingId + '.fec')
+                        .pipe(parser())
+                        .on('data', function(row) {
+                            if (row) {
+                                if (count === 0) {
+                                    file = fs.createWriteStream(__dirname + '/node_parsed/' + filingId + '.json');
+                                    file.write('{\r\n  \"rows\": [  \r\n    ');
+                                }
+                                else {
+                                    file.write(',\r\n    ');
+                                }
+
+                                file.write(JSON.stringify(row,null,'      ').replace('}','    }'));
+                                count++;
+                            }
+                        })
+                        .on('error',function (e) {
+                            cb(null);
+                        })
+                        .on('finish',function () {
+                            if (count > 0) {
+                                file.write('\r\n  ]\r\n}\r\n');
+                                file.end();
+                            }
+//                            console.log('parsed ' + count + ' rows');
+
+                            cb(null);
+                        });
+                }
+                else {
+//                    console.log('skipping ' + filingId + ' because parsed file exists');
+
+                    cb(null);
+                }
+            });
+
         },filename);
     });
 });

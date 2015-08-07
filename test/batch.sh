@@ -13,6 +13,7 @@ do
     node parse.js
     for f in $RUBY_PARSED_DIR/*.json
     do
+        echo "diff $f"
         diff $f ${f/ruby_parsed/node_parsed}
     done
     rm -rf $TEMP_DIR/*.fec

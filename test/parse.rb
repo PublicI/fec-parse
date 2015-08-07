@@ -49,25 +49,25 @@ class Parse
               # file.write parsed_row.to_json
             end
           rescue Fech::VersionError => e
-            STDERR.puts e
+#            STDERR.puts e
           end
         end
 
-        puts 'parsed ' + count.to_s + ' rows'
+#        puts 'parsed ' + count.to_s + ' rows'
 
         file.write "\r\n  ]\r\n}\r\n"
 
         file.close()
       end
     else
-      puts 'skipping ' + id + ' because parsed file exists'
+#      puts 'skipping ' + id + ' because parsed file exists'
     end
   end
 
   def iterate
     Dir.foreach(@temp_dir) do |file|
       if file.include?('.fec') && !file.include?('fech_')
-        puts 'parsing ' + file
+#        puts 'parsing ' + file
         parse(file)
       end
     end
