@@ -23,6 +23,8 @@ fs.readdir(__dirname + '/temp',function (err,files) {
 
                     var file = null;
 
+                    var firstCb = true;
+
                     fs.createReadStream(__dirname + '/temp/' + filingId + '.fec')
                         .pipe(parser())
                         .on('data', function(row) {
@@ -40,7 +42,11 @@ fs.readdir(__dirname + '/temp',function (err,files) {
                             }
                         })
                         .on('error',function (e) {
-                            cb(null);
+                            if (firstCb) {
+//                                console.log(e);
+                                cb(null);
+                                firstCb = false;
+                            }
                         })
                         .on('finish',function () {
                             if (count > 0) {
@@ -49,11 +55,14 @@ fs.readdir(__dirname + '/temp',function (err,files) {
                             }
 //                            console.log('parsed ' + count + ' rows');
 
-                            cb(null);
+                            if (firstCb) {
+                                cb(null);
+                                firstCb = false;
+                            }
                         });
                 }
                 else {
-//                    console.log('skipping ' + filingId + ' because parsed file exists');
+ //                   console.log('skipping ' + filingId + ' because parsed file exists');
 
                     cb(null);
                 }
