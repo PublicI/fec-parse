@@ -8,7 +8,8 @@ chai.should();
 describe('parser.js', function() {
     describe('#_onvalue()', function() {
         it('should correctly return a non-ascii value', function(done) {
-            parser()._onvalue(new Buffer('Doupé'),0,5).should.equal('Doupé');
+            var Doupé = new Buffer([0x44,0x6F,0x75,0x70,0x8E]); // possibly in Mac OS Roman
+            parser()._onvalue(new Buffer(Doupé),0,5).should.equal('Doupé');
         });
 /*
         it('should correctly return a non-ascii value', function(done) {
