@@ -8,16 +8,20 @@ chai.should();
 describe('parser.js', function() {
     describe('#_onvalue()', function() {
         it('should correctly return a non-ascii value', function(done) {
+            parser()._onvalue(new Buffer('Doupé'),0,5).should.equal('Doupé');
+        });
+/*
+        it('should correctly return a non-ascii value', function(done) {
             collect('non-ascii-char.fec', function (err, lines) {
                 if (err) {
                     throw err;
                 }
 
-                lines[47].contributor_name.should.equal('Doup^Joan Covert^Ms.^');
+                lines[47].contributor_name.should.equal('Doupé^Joan Covert^Ms.^');
 
                 done();
             });
-        });
+        });*/
     });
 });
 
