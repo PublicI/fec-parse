@@ -3,4 +3,6 @@ test/filings
 test/temp
 test/node_parsed
 test/ruby_parsed
+test/log.txt
+coverage
 doc/eFilingFormats
