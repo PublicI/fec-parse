@@ -13,7 +13,7 @@ fs.readdir(__dirname + '/temp',function (err,files) {
         }
 
         q.defer(function (filename,cb) {
-            filingId = filename.replace('.fec','');
+            var filingId = filename.replace('.fec','');
 
             fs.exists(__dirname + '/node_parsed/' + filingId + '.json',function (exists) {
                 if (!exists) {
@@ -42,8 +42,10 @@ fs.readdir(__dirname + '/temp',function (err,files) {
                             }
                         })
                         .on('error',function (e) {
-                            if (firstCb) {
-//                                console.log(e);
+                            if (firstCb &&
+                                e.message != 'Row type was undefined' &&
+                                e.message != 'Couldn\'t find header mapping') {
+//                               console.log(e);
                                 cb(null);
                                 firstCb = false;
                             }
@@ -69,5 +71,6 @@ fs.readdir(__dirname + '/temp',function (err,files) {
             });
 
         },filename);
+
     });
 });
