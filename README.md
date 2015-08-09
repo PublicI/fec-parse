@@ -45,7 +45,7 @@ npm install --save request JSONStream
 
 ```node
 var fs = require('fs'),
-    parser = require('../'),
+    parser = require('fec-parse'),
     request = require('request'),
     JSONStream = require('JSONStream');
 
