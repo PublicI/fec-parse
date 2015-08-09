@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "A Node module to parse raw FEC electronic filings.",
   "main": "index.js",
-  "license": "Apache",
+  "license": "(Apache-2.0 AND MIT)",
   "devDependencies": {
     "chai": "^3.0.0",
     "mocha": "^2.2.5"
