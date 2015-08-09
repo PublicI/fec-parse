@@ -1,12 +1,13 @@
 {
   "name": "fec-parse",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha",
   "description": "A Node module to parse raw FEC electronic filings.",
   "main": "index.js",
   "license": "(Apache-2.0 AND MIT)",
   "devDependencies": {
     "chai": "^3.0.0",
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "queue-async": "^1.0.7"
   },
   "scripts": {
     "test": "mocha",
@@ -17,7 +18,6 @@
     "generate-function": "^2.0.0",
     "generate-object-property": "^1.2.0",
     "inherits": "^2.0.1",
-    "lodash": "^3.10.1",
-    "queue-async": "^1.0.7"
+    "lodash": "^3.10.1"
   }
 }
