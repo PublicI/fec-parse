@@ -59,10 +59,12 @@ describe('parser.js', function() {
         });
 
         it('should correctly parse this one filing', function (done) {
-            collect('12344.fec',function (err,lines) {
+            collect('no-header-mapping.fec',function (err,lines) {
                 if (err) {
                     throw err;
                 }
+
+                lines.length.should.equal(2);
 
                 done();
             });
