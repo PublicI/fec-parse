@@ -58,7 +58,7 @@ describe('parser.js', function() {
             });
         });
 
-        it('should correctly parse this one filing', function (done) {
+        it('should correctly parse a filing with a row that has a line without a header mapping', function (done) {
             collect('no-header-mapping.fec',function (err,lines) {
                 if (err) {
                     throw err;
