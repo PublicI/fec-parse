@@ -6,27 +6,17 @@ var path = require('path'),
 var should = chai.should();
 
 describe('parser.js', function() {
-    /*
-    describe('#_onvalue()', function() {
+    it('should correctly return a non-ascii value', function(done) {
+        collect('character-encoding.fec', function (err, lines) {
+            if (err) {
+                throw err;
+            }
 
-        it('should correctly return a non-ascii value', function(done) {
-            var Doupé = new Buffer([0x44,0x6F,0x75,0x70,0x8E]); // possibly in Mac OS Roman
-            parser()._onvalue(new Buffer(Doupé),0,5).should.equal('Doupé');
+            lines[15].contributor_name.should.equal('Zorrilla-Martínez^Pedro L.');
+
+            done();
         });
-
-        it('should correctly return a non-ascii value', function(done) {
-            collect('non-ascii-char.fec', function (err, lines) {
-                if (err) {
-                    throw err;
-                }
-
-                lines[47].contributor_name.should.equal('Doupé^Joan Covert^Ms.^');
-
-                done();
-            });
-        });
-
-    });*/
+    });
 
     it('should correctly return the value at the end of a header line delimited with commas', function(done) {
         collect('last-value.fec', function (err, lines) {
@@ -77,6 +67,19 @@ describe('parser.js', function() {
         });
     });
     
+    it('should correctly parse a form 99', function (done) {
+        collect('form-99.fec',function (err,lines) {
+            if (err) {
+                throw err;
+            }
+
+            lines.length.should.equal(2);
+            lines[1].text.should.equal('It is the intention of 21st Century Democrats (C00230342) to change to a monthly filing schedule for the year 2002.');
+
+            done();
+        });
+    });
+
 });
 
 /*
