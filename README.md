@@ -1,4 +1,4 @@
-# A streaming FEC raw file parser
+# A streaming raw FEC file parser
 
 Currently a mashup of the [Fech](https://github.com/NYTimes/Fech) gem by Derek Willis and others (portions ported to JS), and the  [csv-parser](https://github.com/mafintosh/csv-parser) module by Mathias Buus, Max Ogden and others.
 
