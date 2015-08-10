@@ -28,46 +28,52 @@ describe('parser.js', function() {
 
     });*/
 
-    describe('#_online()', function() {
+    it('should correctly return the value at the end of a header line delimited with commas', function(done) {
+        collect('last-value.fec', function (err, lines) {
+            if (err) {
+                throw err;
+            }
 
-        it('should correctly return the value at the end of a header line delimited with commas', function(done) {
-            collect('last-value.fec', function (err, lines) {
-                if (err) {
-                    throw err;
-                }
+            should.exist(lines[0].report_number);
+            lines[0].report_number.should.equal('1');
 
-                should.exist(lines[0].report_number);
-                lines[0].report_number.should.equal('1');
-
-                done();
-            });
+            done();
         });
-
     });
 
-    describe('#_transform()', function() {
-        it('should parse a filing with an undefined row type without throwing an error', function (done) {
-            collect('undefined-row-type.fec',function (err,lines) {
-                if (err) {
-                    throw err;
-                }
+    it('should parse a filing with an undefined row type without throwing an error', function (done) {
+        collect('undefined-row-type.fec',function (err,lines) {
+            if (err) {
+                throw err;
+            }
 
-                lines.length.should.equal(11);
+            lines.length.should.equal(11);
 
-                done();
-            });
+            done();
         });
+    });
 
-        it('should correctly parse a filing with a row that has a line without a header mapping', function (done) {
-            collect('no-header-mapping.fec',function (err,lines) {
-                if (err) {
-                    throw err;
-                }
+    it('should correctly parse a filing with a row that has a line without a header mapping', function (done) {
+        collect('no-header-mapping.fec',function (err,lines) {
+            if (err) {
+                throw err;
+            }
 
-                lines.length.should.equal(2);
+            lines.length.should.equal(2);
 
-                done();
-            });
+            done();
+        });
+    });
+
+    it('should correctly parse a filing with a missing close quote', function (done) {
+        collect('trailing-quote.fec',function (err,lines) {
+            if (err) {
+                throw err;
+            }
+
+            lines.length.should.equal(212);
+
+            done();
         });
     });
     
