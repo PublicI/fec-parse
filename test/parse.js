@@ -8,7 +8,7 @@ var q = queue(1);
 
 fs.readdir(__dirname + '/temp',function (err,files) {
     files.forEach(function (filename) {
-        if (filename == '.DS_Store') {
+        if (filename == '.DS_Store' || filename.indexOf('.fec') === -1) {
             return;
         }
 
