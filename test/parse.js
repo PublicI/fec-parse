@@ -6,7 +6,7 @@ var parser = require('../');
 
 var q = queue(1);
 
-fs.readdir(__dirname + '/temp',function (err,files) {
+fs.readdir(__dirname + '/data',function (err,files) {
     files.forEach(function (filename) {
         if (filename == '.DS_Store' || filename.indexOf('.fec') === -1) {
             return;
@@ -25,7 +25,7 @@ fs.readdir(__dirname + '/temp',function (err,files) {
 
                     var firstCb = true;
 
-                    fs.createReadStream(__dirname + '/temp/' + filingId + '.fec')
+                    fs.createReadStream(__dirname + '/data/' + filingId + '.fec')
                         .pipe(parser())
                         .on('data', function(row) {
                             if (row) {
