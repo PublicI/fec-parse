@@ -81,6 +81,23 @@ describe('parser.js', function() {
         });
     });
 
+
+    it('should return the correct value for total and federal refunds', function (done) {
+        collect('federal-refunds.fec',function (err,lines) {
+            if (err) {
+                throw err;
+            }
+
+            lines[1].col_a_total_contributions_refunds.should.equal('270000.00');
+            lines[1].col_b_total_contributions_refunds.should.equal('270000.00');
+            lines[1].col_a_federal_refunds.should.equal('0.00');
+            lines[1].col_b_federal_refunds.should.equal('0.00');
+
+            done();
+        });
+    });
+
+
 });
 
 /*
