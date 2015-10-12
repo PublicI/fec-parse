@@ -72,8 +72,9 @@ describe('parser.js', function() {
             if (err) {
                 throw err;
             }
-
+            
             lines.length.should.equal(2);
+            should.exist(lines[1].text);
             lines[1].text.should.equal('It is the intention of 21st Century Democrats (C00230342) to change to a monthly filing schedule for the year 2002.');
 
             done();
