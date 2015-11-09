@@ -5,7 +5,7 @@ This is currently a mashup of the [Fech](https://github.com/NYTimes/Fech) Ruby g
 ## Installation
 
 ```sh
-npm install --save github:chriszs/fec-parse
+npm install --save fec-parse
 ```
 
 ## Usage
