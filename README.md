@@ -2,7 +2,7 @@
 
 Currently a mashup of the [Fech](https://github.com/NYTimes/Fech) gem by Derek Willis and others (portions ported to JS), and the  [csv-parser](https://github.com/mafintosh/csv-parser) module by Mathias Buus, Max Ogden and others.
 
-**This module is currently under heavy development, and nobody should use for anything serious. Yet.**
+**This module is currently beta software, and users are strongly cautioned against relying on the output being 100% correct for every filing.**
 
 ## Installation
 
