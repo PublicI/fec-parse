@@ -4,6 +4,10 @@
   "description": "A Node module to parse raw FEC electronic filings.",
   "main": "index.js",
   "license": "(Apache-2.0 AND MIT)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chriszs/fec-parse.git"
+  },
   "devDependencies": {
     "chai": "^3.0.0",
     "mocha": "^2.2.5",
