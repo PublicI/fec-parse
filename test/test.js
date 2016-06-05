@@ -66,6 +66,19 @@ describe('parser.js', function() {
             done();
         });
     });
+
+    it('should correctly parse a filing that leaves a quote open if it uses the FS separator', function (done) {
+        collect('quote-left-open.fec',function (err,lines) {
+            if (err) {
+                throw err;
+            }
+
+            // technically quotes aren't even allowed here, but ¯\_(ツ)_/¯
+            lines[2].contributor_occupation.should.equal('~"CO"~ AUTHOR OF ~"DIVINE 9/11 INTERVE');
+
+            done();
+        });
+    });
     
     it('should correctly parse a form 99', function (done) {
         collect('form-99.fec',function (err,lines) {
