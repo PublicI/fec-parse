@@ -26,7 +26,7 @@ fs.readdir(__dirname + '/temp',function (err,files) {
                     var firstCb = true;
 
                     fs.createReadStream(__dirname + '/temp/' + filingId + '.fec')
-                        .pipe(parser())
+                        .pipe(parser({map:false}))
                         .on('data', function(row) {
                             if (row) {
                                 if (count === 0) {
