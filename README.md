@@ -1,6 +1,4 @@
-This is currently a mashup of the [Fech](https://github.com/NYTimes/Fech) Ruby gem by Derek Willis and others (portions ported to JavaScript), and the  [csv-parser](https://github.com/mafintosh/csv-parser) module by Mathias Buus, Max Ogden and others.
-
-**This module is currently beta software. Users are strongly cautioned against relying on the output being 100% correct for every filing.**
+This is an unofficial Node parser for electronic filings submitted to the Federal Election Commission. It uses code from the [Fech](https://github.com/NYTimes/Fech) Ruby gem by Derek Willis and others, and the [csv-parser](https://github.com/mafintosh/csv-parser) module by Mathias Buus, Max Ogden and others.
 
 ## Installation
 
