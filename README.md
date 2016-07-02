@@ -4,7 +4,7 @@ This is currently a mashup of the [Fech](https://github.com/NYTimes/Fech) Ruby g
 
 ## Installation
 
-```sh
+```shell
 npm install --save fec-parse
 ```
 
@@ -12,11 +12,11 @@ npm install --save fec-parse
 
 ### Parse from downloaded file
 
-```sh
+```shell
 wget http://docquery.fec.gov/dcdev/posted/876050.fec
 ```
 
-```node
+```js
 var fs = require('fs'),
     parser = require('fec-parse');
 
@@ -41,7 +41,7 @@ fs.createReadStream(filingId + '.fec')
 npm install --save request JSONStream
 ```
 
-```node
+```js
 var fs = require('fs'),
     parser = require('fec-parse'),
     request = require('request'),
