@@ -1,6 +1,6 @@
 {
   "name": "fec-parse",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "A Node module to parse raw FEC electronic filings.",
   "main": "index.js",
   "license": "(Apache-2.0 AND MIT)",
