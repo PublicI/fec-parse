@@ -125,6 +125,7 @@ describe('parser.js', function() {
             lines[0].received_date.should.equal('20161008');
 
             lines[1].begin_image_number.should.equal('201610040200394414');
+            lines[1].receipt_date.should.equal('20161004');
 
             lines[2].form_type.should.equal('SA11AI');
             lines[2].filer_committee_id_number.should.equal('C00608851');
