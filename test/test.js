@@ -111,6 +111,18 @@ describe('parser.js', function() {
         });
     });
 
+    it('should correctly parse a version 2.6 paper filing header row', function (done) {
+        collect('843444.fec',function (err,lines) {
+            if (err) {
+                throw err;
+            }
+
+            lines[0].received_date.should.equal('20121031');
+
+            done();
+        });
+    });
+
     it('should correctly parse certain lines of a converted paper filing', function (done) {
         collect('paper1.fec',function (err,lines) {
             if (err) {
