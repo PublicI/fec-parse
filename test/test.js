@@ -136,6 +136,7 @@ describe('parser.js', function() {
             lines[0].batch_number.should.equal('1');
             lines[0].received_date.should.equal('20161008');
 
+            lines[1].col_a_cash_on_hand_close.should.equal('634214.43');
             lines[1].begin_image_number.should.equal('201610040200394414');
             lines[1].receipt_date.should.equal('20161004');
 
