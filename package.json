@@ -10,8 +10,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^5.2.0",
-    "queue-async": "^1.0.7"
+    "mocha": "^5.2.0"
   },
   "scripts": {
     "test": "mocha",
@@ -20,7 +19,6 @@
   "dependencies": {
     "generate-function": "^2.0.0",
     "generate-object-property": "^1.2.0",
-    "inherits": "^2.0.1",
-    "lodash": "^4.17.10"
+    "inherits": "^2.0.1"
   }
 }

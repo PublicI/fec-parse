@@ -137,7 +137,7 @@ describe('parser.js', function() {
             lines[0].received_date.should.equal('20161008');
 
             lines[1].col_a_cash_on_hand_close.should.equal('634214.43');
-            lines[1].beginning_image_number.should.equal('201610040200394414');
+            lines[1].begin_image_number.should.equal('201610040200394414');
             lines[1].receipt_date.should.equal('20161004');
 
             lines[2].form_type.should.equal('SA11AI');
