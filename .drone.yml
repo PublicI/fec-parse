@@ -1,0 +1,17 @@
+pipeline:
+  install:
+    image: node:8.12.0-alpine
+    commands:
+      - npm ci
+
+  test:
+    image: node:8.12.0-alpine
+    commands:
+      - npm test
+
+  slack:
+    image: plugins/slack
+    secrets: [ slack_webhook ]
+    when:
+      status: [ success, failure ]
+      event: [push, tag, deployment]
