@@ -1,7 +1,7 @@
-import commonjs from 'rollup-plugin-commonjs';
-import json from 'rollup-plugin-json';
+import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
 import builtins from '@stream-io/rollup-plugin-node-builtins';
-import resolve from 'rollup-plugin-node-resolve';
+import resolve from '@rollup/plugin-node-resolve';
 import globals from 'rollup-plugin-node-globals';
 
 const config = {
