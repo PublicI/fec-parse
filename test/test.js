@@ -1,11 +1,10 @@
-var path = require('path'),
-    fs = require('fs'),
-    chai = require('chai'),
-    parser = require('../');
+import fs from 'fs';
+import chai from 'chai';
+import parser from '../lib/parser.js';
 
-var should = chai.should();
+const should = chai.should();
 
-describe('parser.js', function() {
+describe('parser.js', () => {
     /*
     it('should correctly return a non-ascii value', function(done) {
         collect('character-encoding.fec', function (err, lines) {
@@ -19,8 +18,8 @@ describe('parser.js', function() {
         });
     });*/
 
-    it('should correctly return the value at the end of a header line delimited with commas', function(done) {
-        collect('last-value.fec', function (err, lines) {
+    it('should correctly return the value at the end of a header line delimited with commas', done => {
+        collect('last-value.fec', (err, lines) => {
             if (err) {
                 throw err;
             }
@@ -32,44 +31,44 @@ describe('parser.js', function() {
         });
     });
 
-    it('should parse a filing with an undefined row type without throwing an error', function (done) {
-        collect('undefined-row-type.fec',function (err,lines) {
+    it('should parse a filing with an undefined row type without throwing an error', done => {
+        collect('undefined-row-type.fec',(err, {length}) => {
             if (err) {
                 throw err;
             }
 
-            lines.length.should.equal(11);
+            length.should.equal(11);
 
             done();
         });
     });
 
-    it('should correctly parse a filing with a row that has a line without a header mapping', function (done) {
-        collect('no-header-mapping.fec',function (err,lines) {
+    it('should correctly parse a filing with a row that has a line without a header mapping', done => {
+        collect('no-header-mapping.fec',(err, {length}) => {
             if (err) {
                 throw err;
             }
 
-            lines.length.should.equal(2);
+            length.should.equal(2);
 
             done();
         });
     });
 
-    it('should correctly parse a filing with a missing close quote', function (done) {
-        collect('trailing-quote.fec',function (err,lines) {
+    it('should correctly parse a filing with a missing close quote', done => {
+        collect('trailing-quote.fec',(err, {length}) => {
             if (err) {
                 throw err;
             }
 
-            lines.length.should.equal(212);
+            length.should.equal(212);
 
             done();
         });
     });
 
-    it('should correctly parse a filing that leaves a quote open if it uses the FS separator', function (done) {
-        collect('quote-left-open.fec',function (err,lines) {
+    it('should correctly parse a filing that leaves a quote open if it uses the FS separator', done => {
+        collect('quote-left-open.fec',(err, lines) => {
             if (err) {
                 throw err;
             }
@@ -81,8 +80,8 @@ describe('parser.js', function() {
         });
     });
     
-    it('should correctly parse a form 99', function (done) {
-        collect('form-99.fec',function (err,lines) {
+    it('should correctly parse a form 99', done => {
+        collect('form-99.fec',(err, lines) => {
             if (err) {
                 throw err;
             }
@@ -96,8 +95,8 @@ describe('parser.js', function() {
     });
 
 
-    it('should return the correct value for total and federal refunds', function (done) {
-        collect('federal-refunds.fec',function (err,lines) {
+    it('should return the correct value for total and federal refunds', done => {
+        collect('federal-refunds.fec',(err, lines) => {
             if (err) {
                 throw err;
             }
@@ -111,8 +110,8 @@ describe('parser.js', function() {
         });
     });
 
-    it('should correctly parse a version 2.6 paper filing header row', function (done) {
-        collect('843444.fec',function (err,lines) {
+    it('should correctly parse a version 2.6 paper filing header row', done => {
+        collect('843444.fec',(err, lines) => {
             if (err) {
                 throw err;
             }
@@ -123,8 +122,8 @@ describe('parser.js', function() {
         });
     });
 
-    it('should correctly parse certain lines of a converted paper filing', function (done) {
-        collect('paper1.fec',function (err,lines) {
+    it('should correctly parse certain lines of a converted paper filing', done => {
+        collect('paper1.fec',(err, lines) => {
             if (err) {
                 throw err;
             }
@@ -183,23 +182,24 @@ copyright (c) 2014 Mathias Buus
 licensed MIT */
 
 function fixture(name) {
-    return path.join(__dirname, 'data', name);
+    return new URL(`data/${name}`, import.meta.url);
 }
 
 function collect(file, opts, cb) {
     if (typeof opts === 'function') {
-        return collect(file, null, opts);
+        return collect(file, undefined, opts);
     }
-    var data = fs.createReadStream(fixture(file));
-    var lines = [];
+
+    const data = fs.createReadStream(fixture(file));
+    const lines = [];
     data.pipe(parser(opts))
-        .on('data', function(line) {
+        .on('data', line => {
             lines.push(line);
         })
-        .on('error', function(err) {
+        .on('error', err => {
             cb(err, lines);
         })
-        .on('end', function() {
+        .on('end', () => {
             cb(false, lines);
         });
 
