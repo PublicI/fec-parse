@@ -5,7 +5,7 @@ This uses code from the [Fech](https://github.com/NYTimes/Fech) Ruby gem by Dere
 ## Installation
 
 ```shell
-npm install --save fec-parse
+npm i fec-parse
 ```
 
 ## Usage
@@ -17,22 +17,22 @@ wget http://docquery.fec.gov/dcdev/posted/876050.fec
 ```
 
 ```js
-var fs = require('fs'),
-    parser = require('fec-parse');
+import fs from "fs";
+import parser from "fec-parse";
 
-var filingId = '876050'; // Obama for America 2012 post-general report
+const filingId = "876050"; // Obama for America 2012 post-general report
 
-fs.createReadStream(filingId + '.fec')
-            .pipe(parser())
-            .on('data', function(row) {
-                console.log(row);
-            })
-            .on('error', function (err) {
-                console.error(err);
-            })
-            .on('finish',function () {
-                console.log('done');
-            });
+fs.createReadStream(`${filingId}.fec`)
+  .pipe(parser())
+  .on("data", (row) => {
+    console.log(row);
+  })
+  .on("error", (err) => {
+    console.error(err);
+  })
+  .on("finish", () => {
+    console.log("done");
+  });
 ```
 
 ### Download and parse in one
@@ -42,15 +42,15 @@ npm install --save request JSONStream
 ```
 
 ```js
-var fs = require('fs'),
-    parser = require('fec-parse'),
-    request = require('request'),
-    JSONStream = require('JSONStream');
+import fs from "fs";
+import parser from "fec-parse";
+import request from "request";
+import JSONStream from "JSONStream";
 
-var filingId = '876050';
+const filingId = "876050";
 
-request('http://docquery.fec.gov/dcdev/posted/' + filingId + '.fec')
-    .pipe(parser())
-    .pipe(JSONStream.stringify('{"rows":[\n',',\n','\n]}'))
-    .pipe(fs.createWriteStream(filingId + '.json'));
+request(`http://docquery.fec.gov/dcdev/posted/${filingId}.fec`)
+  .pipe(parser())
+  .pipe(JSONStream.stringify('{"rows":[\n', ",\n", "\n]}"))
+  .pipe(fs.createWriteStream(`${filingId}.json`));
 ```

@@ -1,25 +1,26 @@
 {
   "name": "fec-parse",
-  "version": "0.23.0",
+  "version": "0.27.0",
   "description": "A Node module to parse raw FEC electronic filings.",
   "main": "index.js",
   "umd:main": "dist/bundle.js",
   "unpkg": "dist/bundle.js",
   "jsdelivr": "dist/bundle.js",
   "license": "(Apache-2.0 AND MIT)",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/chriszs/fec-parse.git"
   },
   "devDependencies": {
-    "@stream-io/rollup-plugin-node-builtins": "^2.1.5",
-    "chai": "^4.3.4",
-    "mocha": "^9.0.1",
-    "rollup": "^2.52.2",
     "@rollup/plugin-commonjs": "^19.0.0",
     "@rollup/plugin-json": "^4.1.0",
-    "rollup-plugin-node-globals": "^1.4.0",
-    "@rollup/plugin-node-resolve": "^13.0.0"
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@stream-io/rollup-plugin-node-builtins": "^2.1.5",
+    "chai": "^4.3.4",
+    "mocha": "^9.1.1",
+    "rollup": "^2.52.2",
+    "rollup-plugin-node-globals": "^1.4.0"
   },
   "scripts": {
     "test": "mocha",
@@ -30,6 +31,7 @@
     "generate-function": "^2.3.1",
     "generate-object-property": "^1.2.0",
     "inherits": "^2.0.4",
-    "stream-browserify": "^3.0.0"
+    "stream-browserify": "^3.0.0",
+    "string_decoder": "^1.3.0"
   }
 }
